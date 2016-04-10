@@ -42,7 +42,7 @@ class TestScripts(unittest.TestCase):
             result = script_name._generate_search(self.code_search)
             self.assertEqual(
                 result,
-                globals()["code_search_"+script_name.__language__],
+                globals()["code_search_" + script_name.__language__],
                 'Invalid generation of search code for {}'.format(script_name.__class__.__name__))
 
     def test_generate_proxy(self):
@@ -50,8 +50,7 @@ class TestScripts(unittest.TestCase):
             'bash': " -x http://xyz.com:2223",
             'php': "\ncurl_setopt($ch, CURLOPT_PROXY, 'http://xyz.com:2223');\n",
             'python': "\n    curl_handler.setopt(curl_handler.PROXY, 'http://xyz.com:2223')\n",
-            'ruby': "\n    proxy: 'http://xyz.com:2223',\n",
-        }
+            'ruby': "\n    proxy: 'http://xyz.com:2223',\n"}
         for script_name in self.script_list:
             result = script_name._generate_proxy()
             self.assertEqual(
@@ -64,7 +63,7 @@ class TestScripts(unittest.TestCase):
             result = script_name.generate_script()
             self.assertEqual(
                 result,
-                globals()["code_"+script_name.__language__],
+                globals()["code_" + script_name.__language__],
                 'Invalid generation of GET script for {}'.format(script_name.__class__.__name__))
 
     def test_post_generate_script(self):
@@ -73,7 +72,7 @@ class TestScripts(unittest.TestCase):
             result = script_name.generate_script(headers=self.second_headers, details=self.second_details)
             self.assertEqual(
                 result,
-                globals()["code_post_"+script_name.__language__],
+                globals()["code_post_" + script_name.__language__],
                 'Invalid generation of POST script for {}'.format(script_name.__class__.__name__))
 
     def test_generate_post(self):
@@ -81,8 +80,7 @@ class TestScripts(unittest.TestCase):
             'bash': ' --data "hello7World\'Ω≈ç√∫˜µ≤≥÷田中さんにあげて下さい,./;[]\-=<>?:\\"{}|_+!@#$%^&*()`" ',
             'php': '\n$content = "hello7World\'Ω≈ç√∫˜µ≤≥÷田中さんにあげて下さい,./;[]\-=<>?:\\"{}|_+!@#$%^&*()`";\ncurl_setopt($ch, CURLOPT_POST, 1);\ncurl_setopt($ch, CURLOPT_POSTFIELDS, $content);\n',
             'python': '\n    # Sets request method to POST\n    curl_handler.setopt(curl_handler.POSTFIELDS, "hello7World\'Ω≈ç√∫˜µ≤≥÷田中さんにあげて下さい,./;[]\-=<>?:\\"{}|_+!@#$%^&*()`")  #expects body to urlencoded\n',
-            'ruby': '\n    body: "hello7World\'Ω≈ç√∫˜µ≤≥÷田中さんにあげて下さい,./;[]\-=<>?:\\"{}|_+!@#$%^&*()`"\n',
-        }
+            'ruby': '\n    body: "hello7World\'Ω≈ç√∫˜µ≤≥÷田中さんにあげて下さい,./;[]\-=<>?:\\"{}|_+!@#$%^&*()`"\n'}
         self.details['data'] = 'hello7World\'Ω≈ç√∫˜µ≤≥÷田中さんにあげて下さい,./;[]\-=<>?:"{}|_+!@#$%^&*()`'
         for script_name in self.script_list:
             result = script_name._generate_post()
@@ -96,7 +94,7 @@ class TestScripts(unittest.TestCase):
             result = script_name._generate_begin()
             self.assertEqual(
                 result,
-                globals()["code_begin_"+script_name.__language__],
+                globals()["code_begin_" + script_name.__language__],
                 'Invalid generation of begin code for {}'.format(script_name.__class__.__name__))
 
     def test_create_url(self):
